@@ -4,7 +4,13 @@ var socket = io();
 
 socket.on('connect', function(){
 	console.log('Connected to socket.io server!');
+	socket.emit('joinRoom', {
+		name: name,
+		room: room
+	});
 });
+
+$('.room-title').text(room);
 
 socket.on('message', function(message){
 	var timestampMoment = moment.utc(message.time);
