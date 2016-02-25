@@ -14,12 +14,15 @@ $('.room-title').text(room);
 
 socket.on('message', function(message){
 	var timestampMoment = moment.utc(message.time);
-	var $message = $('.messages')
+	var $messages = $('.messages')
+	var $message = $('<li class="list-group-item"></li>');
+
 	console.log('New Message:');
 	console.log(message.text);
 
 	$message.append('<p><strong>' + message.name + ' ' + timestampMoment.local().format('h:mm a') + '<p><strong>');
 	$message.append('<p>' + message.text + '</p>');
+	$messages.append($message);
 });
 
 // Handles submitting a new message
